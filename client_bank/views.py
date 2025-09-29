@@ -8,6 +8,9 @@ from decimal import Decimal
 from django.db.models import Q
 
 # Create your views here.
+def landingpage(request: HttpRequest) :
+    return render(request, 'landingpage.html')
+
 def loginView(request : HttpRequest) :
     error,message = None, None
     if request.method == "POST":
