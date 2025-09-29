@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Set PIN{% endblock %}
+{% block header %}Transaction PIN{% endblock %}
+
+{% block content %}
+
+{% if error %}
+        <h4 style="color: red; text-align: center;"> {{ error }}</h4><br>
+    {% endif %}
+
+{% if success %}
+        <h4 style="color: green; text-align: center;"> {{ success }}</h4><br>
+    {% endif %}
+{% if user_has_pin %}
+<div class="form-card">
+  <h2>Update PIN</h2>
+  <form method="POST">
+    {% csrf_token %}
+
+    <input type="hidden" name="pin_exist" value="yes">
+    <label>Current PIN</label>
+    <input type="password" name="current_pin" maxlength="4" placeholder="Enter current PIN">
+
+    <label>New PIN</label>
+    <input type="password" name="new_pin" maxlength="4" placeholder="Enter new PIN" required>
+
+    <label>Confirm PIN</label>
+    <input type="password" name="confirm_pin" maxlength="4" placeholder="Confirm new PIN" required>
+
+    <button type="submit" class="submit-btn">Update PIN</button>
+  </form>
+</div>
+
+{% else %}
+<div class="form-card">
+  <h2>Set PIN</h2>
+  <form method="POST">
+    {% csrf_token %}
+
+    <input type="hidden" name="pin_exist" value="no">
+    <label>New PIN</label>
+    <input type="password" name="new_pin" maxlength="4" placeholder="Enter new PIN" required>
+
+    <label>Confirm PIN</label>
+    <input type="password" name="confirm_pin" maxlength="4" placeholder="Confirm new PIN" required>
+
+    <button type="submit" class="submit-btn">Set PIN</button>
+  </form>
+</div>
+{% endif %}
+
+{% endblock %}

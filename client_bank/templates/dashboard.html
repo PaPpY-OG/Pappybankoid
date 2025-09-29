@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - Bankoid{% endblock %}
+{% block header %}Dashboard{% endblock %}
+
+{% block css %}
+<style>
+  .account_div{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-grid">
+  <div class="left-column">
+    <!-- Account Status -->
+
+  <div class="account_div">
+    <div class="account-status">
+      <h2 class="status-title">Account No</h2>
+      <p><strong>{{ account.account_number }}</strong></p>
+    </div><br>
+    
+    <div class="account-status">
+      <h2 class="status-title">Your Balance</h2>
+      <p><strong>₦{{ account.balance }}</strong></p>
+    </div>
+
+  </div>   
+
+    <!-- Recent Transactions -->
+    <div class="transactions-section">
+      <h3 class="transactions-title">Recent Transactions</h3>
+      {% for tx in transactions %}
+        <div class="transaction-item">
+          <div class="transaction-info">
+            <h4>{{ tx.description }}</h4>
+            <p>{{ tx.date|date:"M d, Y" }}</p>
+          </div>
+          <div class="transaction-amount">
+            {% if tx.amount < 0 %}-{% endif %} ₦{{ tx.amount }}
+          </div>
+        </div>
+      {% empty %}
+        <p>No recent transactions</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

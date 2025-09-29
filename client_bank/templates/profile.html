@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}My Profile{% endblock %}
+{% block nav_profile %}active{% endblock %}
+{% block header %}Update Profile{% endblock %}
+
+{% block content %}
+<div class="form-card">
+  <h2>Profile Settings</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Full Name</label>
+    <input type="text" name="full_name" value="{{ user.profile.full_name }}">
+
+    <label>Email</label>
+    <input type="email" name="email" value="{{ user.email }}">
+
+    <label>Phone</label>
+    <input type="text" name="phone" value="{{ user.profile.phone }}">
+
+    <label>Upload Photo</label>
+    <input type="file" name="photo" accept="image/*">
+
+    <button type="submit" class="submit-btn">Save Changes</button>
+  </form>
+</div>
+{% endblock %}

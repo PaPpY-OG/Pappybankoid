@@ -1,0 +1,82 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/base.css' %}"> -->
+     <style>
+        h1{
+            text-align: center;
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        p{
+            text-align: center;
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: larger;
+        }
+        .container{
+            padding: 5%;
+            justify-content: center;
+            border-radius: 25px;
+            align-items: center;
+            display: flex;
+            height: 120px;
+            width: 15%;
+            margin-left: 38%;
+            box-shadow: 0 0 25px rgb(0, 0, 0, 0.2);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .label{
+            padding-left: 6%; 
+            color: gray; 
+            font-size: 17px;
+        }
+        .input{
+            border: none; 
+            border-bottom: 1px solid rgb(48, 46, 46); 
+            width: 320px; 
+            outline: none; 
+            font-size: 20px; 
+            margin-bottom: 25px;
+        }
+        .submit{
+            background-color: black; 
+            padding-right: 25%;
+            padding-left: 18%; 
+            padding-top: 3%; 
+            padding-bottom: 3%;
+            color: white;
+            border-radius: 17px; 
+            font-weight:500; 
+            font-size: 15px; 
+            border: none; 
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>LOGIN</h1>
+    <p>Welcome to the Login page</p>
+    <h1 style="color: white; text-align: center;">Login page</h1>
+    {% if error %}
+        <h4 style="color: red; text-align: center;"> {{ message }}</h4>
+    {% endif %}
+    <div class="container">
+        <form action="" method="POST" style="align-items: center;">
+            {% csrf_token %}
+            <label class="label" for="email">Email:</label><br>
+            <input class="input" type="email" name="email" required><br><br>
+            <label class="label" for="password">Password:</label><br>
+            <input class="input" type="password" name="password" required><br><br>
+            <input class="submit" type="submit" value="Login">         
+        </form>
+    </div>
+    <script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>

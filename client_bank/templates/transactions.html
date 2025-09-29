@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Transactions - Bankoid{% endblock %}
+{% block header %}All Transactions{% endblock %}
+{% block content %}
+<div class="transactions-section">
+  <h3 class="transactions-title">Transaction History</h3>
+  <!-- <div class="transactions-item">
+    <table>
+      <tr>Amount</tr>
+      <tr>Seller</tr>
+      <tr>Receiver</tr>
+    </table>
+  </div> -->
+  {% for tx in transactions %}
+    <div class="transaction-item">
+      <div class="transaction-info">
+        <h4>{{ tx.description }}</h4>
+        <p>{{ tx.date|date:"M d, Y" }}</p>
+      </div>
+      <div class="transaction-amount">₦{{ tx.amount }}</div>
+      <div class="transaction-info">{{ tx.from_account.user.username }}</div>
+      <div class="transaction-info">{{ tx.to_account.user.username }}</div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{%load static%}
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Bankoid{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- {% block css %} {% endblock %} -->
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo"></div>
+      <div class="nav-item {% if request.resolver_match.url_name == 'client_dashboard' %}active{% endif %}">
+        <a href="{% url 'client_dashboard' %}">🏠</a>
+      </div>
+      <div class="nav-item {% if request.resolver_match.url_name == 'client_transactions' %}active{% endif %}">
+        <a href="{% url 'client_transactions' %}">💳</a>
+      </div>
+      <div class="nav-item {% if request.resolver_match.url_name == 'client_transfer' %}active{% endif %}">
+        <a href="{% url 'client_transfer' %}">💸</a>
+      </div>
+      <div class="nav-item {% if request.resolver_match.url_name == 'client_profile' %}active{% endif %}">
+        <a href="{% url 'client_profile' %}">👤</a>
+      </div>
+      <div class="nav-item {% if request.resolver_match.url_name == 'client_pin' %}active{% endif %}">
+        <a href="{% url 'client_pin' %}">🛡️</a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Header -->
+      <div class="header">
+        <h1>{% block header %}Dashboard{% endblock %}</h1>
+        <div class="header-right">
+          <div class="search-box">
+            <div class="search-icon">🔍</div>
+            <input type="text" class="search-input" placeholder="Search">
+          </div>
+          <div class="header-icons">
+            <button class="icon-btn">💬</button>
+            <button class="icon-btn">🔔</button>
+          </div>
+          <div class="profile-pic">
+            {{ request.user.username|first|upper }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Page-specific content -->
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</body>
+</html>

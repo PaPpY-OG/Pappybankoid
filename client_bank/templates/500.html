@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Bankoid Error{% endblock %}
+{% block header %}500 Error{% endblock %}
+
+{% block css %}
+<style>
+  .error_div{
+    background-color: red;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error_div">
+    <h2>This is a server error page</h2>
+</div>
+{% endblock %}
