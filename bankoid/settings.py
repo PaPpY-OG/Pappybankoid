@@ -32,7 +32,6 @@ DEBUG = True if os.getenv('DEBUG').lower() == 'true' else False
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -130,11 +129,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')  # This should exist
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if not DEBUG:
 
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
